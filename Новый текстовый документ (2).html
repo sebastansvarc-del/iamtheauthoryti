@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аська | Портфолио</title>
+    <style>
+        /* Основные стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #0a0a1a;
+            color: #e0e0ff;
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(28, 12, 66, 0.4) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(28, 12, 66, 0.4) 0%, transparent 20%);
+            background-attachment: fixed;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Шапка */
+        header {
+            padding: 40px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .profile {
+            margin-bottom: 30px;
+        }
+        
+        .profile h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: #a38aff;
+            text-shadow: 0 0 10px rgba(163, 138, 255, 0.5);
+        }
+        
+        .tagline {
+            font-style: italic;
+            color: #8a8ac4;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        /* Навигация */
+        nav {
+            background-color: rgba(16, 16, 36, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #2a2a5a;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            margin: 0 15px;
+        }
+        
+        nav a {
+            color: #a38aff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: #d6c8ff;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #a38aff;
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Секции */
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid rgba(42, 42, 90, 0.5);
+        }
+        
+        section:last-child {
+            border-bottom: none;
+        }
+        
+        h2 {
+            color: #a38aff;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 2.2rem;
+        }
+        
+        h3 {
+            color: #8a8ac4;
+            margin: 20px 0 15px;
+        }
+        
+        /* Обо мне */
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .inspiration {
+            background-color: rgba(16, 16, 36, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 3px solid #a38aff;
+        }
+        
+        /* Навыки */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .skill-category {
+            background-color: rgba(16, 16, 36, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        
+        .skill-category:hover {
+            transform: translateY(-5px);
+            background-color: rgba(26, 26, 56, 0.5);
+        }
+        
+        /* Проекты */
+        .project {
+            margin-bottom: 40px;
+            background-color: rgba(16, 16, 36, 0.5);
+            padding: 25px;
+            border-radius: 10px;
+        }
+        
+        .project-links {
+            margin-top: 15px;
+        }
+        
+        .project-links a {
+            display: inline-block;
+            margin-right: 15px;
+            color: #a38aff;
+            text-decoration: none;
+            padding: 8px 15px;
+            border: 1px solid #a38aff;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        .project-links a:hover {
+            background-color: #a38aff;
+            color: #0a0a1a;
+        }
+        
+        /* Галерея */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .gallery-item {
+            height: 200px;
+            background-color: rgba(26, 26, 56, 0.5);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8a8ac4;
+            font-style: italic;
+        }
+        
+        /* Музыка */
+        .music-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .music-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 200px;
+            height: 60px;
+            background-color: rgba(16, 16, 36, 0.5);
+            border-radius: 10px;
+            color: #a38aff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: 1px solid #2a2a5a;
+        }
+        
+        .music-link:hover {
+            background-color: #a38aff;
+            color: #0a0a1a;
+            transform: translateY(-3px);
+        }
+        
+        /* Цитата */
+        .quote {
+            text-align: center;
+            padding: 60px 0;
+            font-style: italic;
+            font-size: 1.5rem;
+            color: #8a8ac4;
+            max-width: 800px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(42, 42, 90, 0.5);
+            border-bottom: 1px solid rgba(42, 42, 90, 0.5);
+        }
+        
+        /* Футер */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: #8a8ac4;
+            font-size: 0.9rem;
+        }
+        
+        /* Модальное окно для изображений */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.3s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(163, 138, 255, 0.3);
+        }
+        
+        .modal-caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #e0e0ff;
+            padding: 10px 0;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(10, 10, 26, 0.7);
+            border-radius: 5px;
+        }
+        
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #a38aff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+            transition: color 0.3s;
+        }
+        
+        .close:hover {
+            color: #d6c8ff;
+        }
+        
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -50px;
+            color: #a38aff;
+            font-weight: bold;
+            font-size: 30px;
+            transition: 0.3s;
+            user-select: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .next {
+            right: 0;
+            border-radius: 5px 0 0 5px;
+        }
+        
+        .prev:hover, .next:hover {
+            background-color: rgba(163, 138, 255, 0.2);
+            color: #d6c8ff;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav li {
+                margin: 5px 0;
+            }
+            
+            .profile h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .prev, .next {
+                font-size: 20px;
+                padding: 10px;
+            }
+            
+            .close {
+                font-size: 30px;
+                top: 10px;
+                right: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Модальное окно для изображений -->
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <span class="prev">&#10094;</span>
+        <span class="next">&#10095;</span>
+        <img class="modal-content" id="modalImage">
+        <div id="modalCaption" class="modal-caption"></div>
+    </div>
+    
+    <header>
+        <div class="container">
+            <div class="profile">
+                <h1>Аська</h1>
+                <p class="tagline">Человечек с забавными идеями для проектов</p>
+            </div>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#about">Обо мне</a></li>
+                <li><a href="#skills">Навыки</a></li>
+                <li><a href="#projects">Проекты</a></li>
+                <li><a href="#art">Рисование</a></li>
+                <li><a href="#music">Музыка</a></li>
+                <li><a href="#hobbies">Хобби</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <section id="about">
+            <h2>Обо мне</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Я – Аська, человечек, у которого много забавных идей для проектов и который в своё время отдыхал тем, что ботал олимпиады по математике.</p>
+                    <p>Обучение в любом месте в первую очередь для меня – попытка отдохнуть, и когда мне что-то действительно нравится, я не страдаю, изучая новые материалы.</p>
+                    <p>В школе дали неплохую базу программирования, художественная школа дала базовые навыки дизайна. Из-за всего этого теперь есть желание работать в сфере геймдева.</p>
+                    
+                    <div class="inspiration">
+                        <h3>Вдохновение</h3>
+                        <p>Вдохновляющих проектов и людей как таковых нет, единственное, что можно выделить: Хидео Кодзима и его подход к геймдизайну, а также линейка игр Yakuza, где прохождение скорее превращается в просмотр аниме с захватывающим сюжетом, нежели в прохождение игры в стандартном её понимании.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="skills">
+            <h2>Навыки и сильные стороны</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Программирование</h3>
+                    <p>C++, Python, HTML</p>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Дизайн и искусство</h3>
+                    <p>Концепт-арт, саунд-дизайн</p>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Сценаристика</h3>
+                    <p>Лор, диалоги, художественные тексты</p>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Командные роли</h3>
+                    <p>Композитор, программист, тимлид, сценарист, концепт-артер, генератор идей</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="projects">
+            <h2>Проекты</h2>
+            
+            <div class="project">
+                <h3>Void's Memory</h3>
+                <p>Учебный проект во ВШЭ. Мною был написан саундтрек к этой игре.</p>
+                <div class="project-links">
+                    <a href="https://nofaceuserr.itch.io/voids-memory" target="_blank">Страница игры</a>
+                </div>
+            </div>
+            
+            <div class="project">
+                <h3>Игра про звёзды и телескоп (в разработке)</h3>
+                <p>Игра про мужика, который с помощью телескопа высчитывает координаты звезд и пытается найти по ним путь домой, и (возможно) свою давно пропавшую девушку.</p>
+                <div class="gallery">
+                    <div class="gallery-item" onclick="openModal(this)">
+                        <img src="risunok6.png" alt="Концепт-арт игры про звёзды">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="art">
+            <h2>Рисование</h2>
+            <p>В последнее время это концепт-арт для игры про звёзды, координаты и телескоп с романтикой.</p>
+            
+            <div class="gallery">
+                <div class="gallery-item" onclick="openModal(this)">
+                    <img src="risunok7.png" alt="Концепт-арт 1">
+                </div>
+                <div class="gallery-item" onclick="openModal(this)">
+                    <img src="risunok8.png" alt="Концепт-арт 2">
+                </div>
+                <div class="gallery-item" onclick="openModal(this)">
+                    <img src="risunok9.png" alt="Концепт-арт 3">
+                </div>
+                <div class="gallery-item" onclick="openModal(this)">
+                    <img src="risunok10.png" alt="Концепт-арт 4">
+                </div>
+            </div>
+        </section>
+        
+        <section id="music">
+            <h2>Музыка</h2>
+            <p>Написание саундтреков в стиле эмбиент.</p>
+            
+            <div class="music-links">
+                <a href="https://music.yandex.com/artist/21197266" target="_blank" class="music-link">Яндекс.Музыка</a>
+                <a href="https://www.youtube.com/channel/UCCy9ceQMG3TsULX6dPkxqtA" target="_blank" class="music-link">YouTube</a>
+            </div>
+        </section>
+        
+        <section id="hobbies">
+            <h2>Другие увлечения</h2>
+            
+            <h3>Вязание</h3>
+            <div class="gallery">
+                <div class="gallery-item" onclick="openModal(this)">
+                    <img src="risunok4.png" alt="Вязаное изделие 1">
+                </div>
+                <div class="gallery-item" onclick="openModal(this)">
+                    <img src="risunok5.png" alt="Вязаное изделие 2">
+                </div>
+            </div>
+            
+            <h3>Игра на гитаре/бас-гитаре</h3>
+            <p>Предпринимались успешные попытки играть на гитаре/бас-гитаре.</p>
+            <div class="gallery">
+                <div class="gallery-item" onclick="openModal(this)">
+                    <img src="risunok3.png" alt="Гитара">
+                </div>
+            </div>
+            
+            <h3>Походы и лазанье по горам</h3>
+            <div class="gallery">
+                <div class="gallery-item" onclick="openModal(this)">
+                    <img src="risunok1.png" alt="Походное фото 1">
+                </div>
+                <div class="gallery-item" onclick="openModal(this)">
+                    <img src="risunok2.png" alt="Походное фото 2">
+                </div>
+            </div>
+        </section>
+        
+        <div class="quote">
+            "В жизни всё происходит так, как должно происходить, и если чего-то очень сильно хочется, но его сейчас нет, значит, нужно просто подождать. Сейчас просто не то время."
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>© 2025 Аська. Все права защищены.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Получаем модальное окно
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const captionText = document.getElementById("modalCaption");
+        const closeBtn = document.querySelector(".close");
+        const prevBtn = document.querySelector(".prev");
+        const nextBtn = document.querySelector(".next");
+        
+        // Собираем все кликабельные изображения
+        const galleryItems = document.querySelectorAll(".gallery-item");
+        let currentIndex = 0;
+        let images = [];
+        
+        // Инициализируем массив изображений
+        galleryItems.forEach((item, index) => {
+            const img = item.querySelector("img");
+            if (img) {
+                images.push({
+                    src: img.src,
+                    alt: img.alt
+                });
+                
+                // Добавляем индекс к элементу для быстрого доступа
+                item.dataset.index = index;
+            }
+        });
+        
+        // Функция для открытия модального окна
+        function openModal(element) {
+            currentIndex = parseInt(element.dataset.index);
+            updateModal();
+            modal.style.display = "block";
+            document.body.style.overflow = "hidden"; // Блокируем скролл страницы
+        }
+        
+        // Функция для обновления содержимого модального окна
+        function updateModal() {
+            if (images[currentIndex]) {
+                modalImg.src = images[currentIndex].src;
+                captionText.textContent = images[currentIndex].alt;
+                
+                // Показываем или скрываем кнопки навигации
+                prevBtn.style.display = currentIndex > 0 ? "block" : "none";
+                nextBtn.style.display = currentIndex < images.length - 1 ? "block" : "none";
+            }
+        }
+        
+        // Закрытие модального окна
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+            document.body.style.overflow = "auto"; // Возвращаем скролл страницы
+        }
+        
+        // Клик вне изображения для закрытия
+        modal.onclick = function(event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+        }
+        
+        // Навигация вперед
+        nextBtn.onclick = function(event) {
+            event.stopPropagation();
+            if (currentIndex < images.length - 1) {
+                currentIndex++;
+                updateModal();
+            }
+        }
+        
+        // Навигация назад
+        prevBtn.onclick = function(event) {
+            event.stopPropagation();
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateModal();
+            }
+        }
+        
+        // Навигация с помощью клавиатуры
+        document.addEventListener("keydown", function(event) {
+            if (modal.style.display === "block") {
+                if (event.key === "Escape") {
+                    modal.style.display = "none";
+                    document.body.style.overflow = "auto";
+                } else if (event.key === "ArrowRight" && currentIndex < images.length - 1) {
+                    currentIndex++;
+                    updateModal();
+                } else if (event.key === "ArrowLeft" && currentIndex > 0) {
+                    currentIndex--;
+                    updateModal();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
